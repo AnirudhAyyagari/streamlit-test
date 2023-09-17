@@ -1,13 +1,28 @@
-# app.py
-
 import streamlit as st
-from visualization import generate_bar_chart
+import numpy as np
+import matplotlib.pyplot as plt
 
-st.title('Simple Data Visualization App')
+def analyze_data():
+    """
+    Generate 100 random data points and compute their mean and standard deviation.
+    """
+    data = np.random.randn(100)
+    mean = np.mean(data)
+    std_dev = np.std(data)
+    return data, mean, std_dev
 
-data = st.slider('Select data values', 1, 100, (10, 20, 30, 40))
-labels = ['A', 'B', 'C', 'D']
+def main():
+    st.set_page_config(page_title='Data Analysis App', layout='wide')
+    st.title("Random Data Analysis")
+    
+    data, mean, std_dev = analyze_data()
 
-generate_bar_chart(data, labels)
+    st.write(f"Mean: {mean:.2f}")
+    st.write(f"Standard Deviation: {std_dev:.2f}")
 
-st.image('chart.png')
+    fig, ax = plt.subplots()
+    ax.hist(data, bins=20, alpha=0.6, color='b')
+    st.pyplot(fig)
+
+if __name__ == '__main__':
+    main()
