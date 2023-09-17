@@ -1,0 +1,32 @@
+name: CI/CD to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install matplotlib streamlit
+    - name: Run Streamlit app locally (for testing)
+      run: |
+        streamlit run app.py &
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to PythonAnywhere
+      run: |
+        curl -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" -X POST https://www.pythonanywhere.com/api/v0/user/AnirudhMojo/webapps/AnirudhMojo.pythonanywhere/reload/
