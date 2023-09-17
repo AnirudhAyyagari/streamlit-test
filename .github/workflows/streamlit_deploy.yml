@@ -36,9 +36,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      - name: Deploy to production
-        # NOTE: This is a placeholder. You need to replace it with an appropriate action for deploying to Render.
-        uses: johnbeynon/render-deploy-action@v0.0.8
+      - name: Render.com Deploy
+        uses: ttskch/render-deploy@v1.0.0
         with:
           service-id: ${{ secrets.SERVICEID }}
           api-key: ${{ secrets.RENDER }}
+          interval: 20 # optional
+          timeout: 300 # optional
