@@ -40,5 +40,5 @@ jobs:
         # NOTE: This is a placeholder. You need to replace it with an appropriate action for deploying to Render.
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          service-id: ${{ secrets.SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.SERVICEID }}
+          api-key: ${{ secrets.RENDER }}
