@@ -22,10 +22,7 @@ jobs:
         run: pip install --upgrade pip
 
       - name: Install dependencies
-        run: |
-          pip install streamlit
-          pip install numpy
-          pip install matplotlib
+        run: pip install -r requirements.txt
 
       - name: Run Tests (Placeholder)
         run: echo "Placeholder for running tests"
