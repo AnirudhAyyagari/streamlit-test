@@ -41,5 +41,3 @@ jobs:
         with:
           service-id: ${{ secrets.SERVICEID }}
           api-key: ${{ secrets.RENDER }}
-          interval: 20 # optional
-          timeout: 300 # optional
